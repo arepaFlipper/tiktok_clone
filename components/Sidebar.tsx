@@ -5,11 +5,18 @@ import Link from 'next/link';
 import { GoogleLogin } from '@react-oauth/google';
 import { AiFillHome, AiOutlineMenu } from 'react-icons/ai';
 import { ImCancelCircle } from 'react-icons/im';
+import { Discover, SuggestedAccounts, SidebarFooter } from "./index";
 
 const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true);
   const userProfile = false;
   const normalLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#F51997] rounded';
+  const handleSucess = (CredentialResponse: any) => {
+    console.log('Success', CredentialResponse);
+  }
+  const handleFailure = () => {
+    console.log('Failure');
+  }
   return (
     <div>
       <div
@@ -43,8 +50,7 @@ const Sidebar = () => {
               </p>
               <div className="pr-4">
                 <GoogleLogin
-                  clientId=""
-                  render={(renderProps) => {
+                  render={(renderProps: any) => {
                     return (
                       <button
                         className="cursor-pointer bg-white text-lg text-[#F51997] border-[1px] border-[#F51997] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#F51997] "
@@ -55,13 +61,16 @@ const Sidebar = () => {
                       </button>
                     )
                   }}
-                  onSuccess={() => { }}
-                  onFailure={() => { }}
-                  cookiePolicy='sungle_host_origin'
+                  onSuccess={handleSucess}
+                  onFailure={handleFailure}
+                  cookiePolicy='single_host_origin'
                 />
               </div>
             </div>
           )}
+          <Discover />
+          <SuggestedAccounts />
+          <SidebarFooter />
         </div>
       )
       }
