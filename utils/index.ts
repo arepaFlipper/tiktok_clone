@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-
-export const createOrGetUser = async (response: any, addUser: any) => {
-};
+export const createOrGetUser = async (response: any) => {
+  console.log(`⏫%cindex.ts:5 - response`, 'font-weight:bold; background:#1be400;color:#fff;'); //DELETEME
+  console.log(response); // DELETEME
+}
