@@ -9,7 +9,7 @@ export interface Video {
   _id: string;
   postedBy: {
     _id: string;
-    username: string;
+    userName: string;
     image: string;
   };
   likes: {
