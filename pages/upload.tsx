@@ -4,6 +4,7 @@ import { FaCloudUploadAlt } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import axios from "axios";
 import { SanityAssetDocument } from "@sanity/client"
+import { topics } from "../utils/constants";
 
 import useAuthStore from '../store/authStore';
 import { client } from '../utils/client';
@@ -85,7 +86,23 @@ const upload = () => {
             type="text"
             value=""
             onChange={() => { }}
+            className="rounded outline-none text-md border-2 border-gray-200 p-2"
           />
+          <label className="text-md font-medium">Choose a Category</label>
+          <select onChange={() => { }} className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer">
+            {topics.map((topic) => {
+              return (
+                <option
+                  key={topic.name}
+                  value={topic.name}
+                  className="outline-none capitalize bg-white text-gray-700 text-md p-2 hover:bg-slate-300"
+                >
+                  {topic.name}
+                </option>
+              )
+            })}
+
+          </select>
         </div>
       </div>
     </div>
