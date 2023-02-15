@@ -18,6 +18,7 @@ const upload = () => {
   const [savingPost, setSavingPost] = useState(false);
 
   const { userProfile }: { userProfile: any } = useAuthStore();
+  const router = useRouter();
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
     const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
@@ -35,6 +36,8 @@ const upload = () => {
     }
   }
   const handlePost = async () => {
+    console.log(`🫕%cupload.tsx:39 - caption`, 'font-weight:bold; background:#857a00;color:#fff;'); //DELETEME
+    console.log(caption); // DELETEME
     if (caption && videoAsset?._id && category) {
       setSavingPost(true);
       const document = {
@@ -51,8 +54,13 @@ const upload = () => {
         postedBy: {
           _type: 'postedBy',
           _ref: userProfile?._id
-        }
+        },
+        topic: category,
       }
+      await axios.post("http://localhost:3000/api/post", document);
+      console.log(`🌈%cupload.tsx:59 - document`, 'font-weight:bold; background:#a15e00;color:#fff;'); //DELETEME
+      console.log(document); // DELETEME
+      router.push('/');
     }
 
   }
@@ -133,14 +141,14 @@ const upload = () => {
           </select>
           <div className="flex gap-6 mt-10">
             <button
-              onClick={() => { handlePost }}
+              onClick={() => handlePost()}
               type="button"
               className="border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
               Discard
             </button>
             <button
-              onClick={() => { }}
+              onClick={handlePost}
               type="button"
               className="bg-[#F51997] text-white text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
