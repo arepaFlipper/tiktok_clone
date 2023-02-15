@@ -14,8 +14,10 @@ const upload = () => {
   const [wrongFileType, setWrongFileType] = useState(false);
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
   const [caption, setCaption] = useState('');
-  const [Category, setCategory] = useState(topics[0].name);
+  const [category, setCategory] = useState(topics[0].name);
   const [savingPost, setSavingPost] = useState(false);
+
+  const { userProfile } = useAuthStore();
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
     const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
@@ -32,6 +34,29 @@ const upload = () => {
       setWrongFileType(false);
     }
   }
+  const handlePost = async () => {
+    if (caption && videoAsset?._id && category) {
+      setSavingPost(true);
+      const document = {
+        _type: 'post',
+        caption,
+        video: {
+          _type: 'file',
+          asset: {
+            _type: 'reference',
+            _ref: videoAsset?._id
+          }
+        },
+        userId: userProfile?._id,
+        postedBy: {
+          _type: 'postedBy',
+          _ref: userProfile?._id
+        }
+      }
+    }
+
+  }
+
   return (
     <div className="flex w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-(#F8F8F8) justify-center">
       <div className="bg-white rounded-lg xl:h-[80vh] w-[80%] flex gap-6 flex-wrap justify-between items-center p-14 pt-6">
@@ -108,7 +133,7 @@ const upload = () => {
           </select>
           <div className="flex gap-6 mt-10">
             <button
-              onClick={() => { }}
+              onClick={() => { handlePost }}
               type="button"
               className="border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
