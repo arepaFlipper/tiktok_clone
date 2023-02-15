@@ -13,6 +13,9 @@ const upload = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [wrongFileType, setWrongFileType] = useState(false);
   const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>();
+  const [caption, setCaption] = useState('');
+  const [Category, setCategory] = useState(topics[0].name);
+  const [savingPost, setSavingPost] = useState(false);
   const uploadVideo = async (e: any) => {
     const selectedFile = e.target.files[0];
     const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
@@ -84,12 +87,12 @@ const upload = () => {
           <label className="text-md font-medium">Caption</label>
           <input
             type="text"
-            value=""
-            onChange={() => { }}
+            value={caption}
+            onChange={(e) => setCaption(e.target.value)}
             className="rounded outline-none text-md border-2 border-gray-200 p-2"
           />
           <label className="text-md font-medium">Choose a Category</label>
-          <select onChange={() => { }} className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer">
+          <select onChange={(e) => setCategory(e.target.value)} className="outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 rounded cursor-pointer">
             {topics.map((topic) => {
               return (
                 <option
