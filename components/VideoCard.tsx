@@ -7,6 +7,7 @@ import { BsFillPlayFill, BsPlay, BsFillPauseFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
 
 import { Video } from "../types";
+import { useRouter } from 'next/router';
 
 interface IProps {
   post: Video;
@@ -17,6 +18,11 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (videoRef?.current) {
+      videoRef.current.muted = isVideoMuted;
+    }
+  }, [isVideoMuted])
 
   const onVideoPress = () => {
     if (playing) {
@@ -65,7 +71,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
       <div>
         <div className="lg:ml-20 flex gap-4 relative">
           <div className="rounded-3xl" onMouseEnter={() => { setIsHover(true) }} onMouseLeave={() => { setIsHover(false) }}>
-            <Link href="/detail/${post._id}">
+            <Link href={`/detail/${post._id}`}>
               <video
                 loop
                 ref={videoRef}
