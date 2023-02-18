@@ -9,6 +9,8 @@ import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 import axios from "axios";
 import { Video } from "@/types";
+import useAuthStore from "@/store/authStore"
+import { LikeButton, Comments } from "@/components";
 
 interface IProps {
   postDetails: Video,
@@ -17,6 +19,7 @@ interface IProps {
 const Detail = ({ postDetails }: IProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
+  const { userProfile }: any = useAuthStore();
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [post, setPost] = useState(postDetails);
   const [playing, setPlaying]: [boolean, Function] = useState(false);
@@ -37,6 +40,16 @@ const Detail = ({ postDetails }: IProps) => {
   }, [isVideoMuted, post])
 
   if (!post) return null;
+  const handleLike = async (like: boolean) => {
+    if (userProfile) {
+      const response = await axios.put(`${BASE_URL}/api/like`, {
+        userId: userProfile._id,
+        oostId: post._id,
+        like
+      })
+    }
+  }
+
   return (
     <div className="flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap">
       <div className="relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
@@ -82,9 +95,8 @@ const Detail = ({ postDetails }: IProps) => {
       </div>
       <div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
         <div className="lg:mt-20 mt-10">
-
           <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
-            <div className="md:w-16 md:h-16 w-10 h-10">
+            <div className="ml-4 md:w-20 md:h-20 w-16 h-16">
               <Link href="/">
                 <>
                   <Image
@@ -100,7 +112,7 @@ const Detail = ({ postDetails }: IProps) => {
             </div>
             <div>
               <Link href="/">
-                <div className="flex items-center gap-2">
+                <div className="mt-3 flex flex-col gap-2">
                   <p className="flex gap-2 items-center md:text-md font-bold text-primary">
                     {post.postedBy.userName}
                     <GoVerified
@@ -114,6 +126,16 @@ const Detail = ({ postDetails }: IProps) => {
               </Link>
             </div>
           </div>
+          <p className="px-10 text-lg text-gray-600 ">{post.caption}</p>
+          <div className="mt-10 px-10 ">
+            {userProfile && (
+              <LikeButton
+                handleLike={() => handleLike(true)}
+                handleDislike={() => handleLike(false)}
+              />
+            )}
+          </div>
+          <Comments />
         </div>
       </div>
     </div>
