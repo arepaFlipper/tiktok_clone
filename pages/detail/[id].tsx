@@ -44,7 +44,7 @@ const Detail = ({ postDetails }: IProps) => {
     if (userProfile) {
       const { data } = await axios.put(`${BASE_URL}/api/like`, {
         userId: userProfile._id,
-        oostId: post._id,
+        postId: post._id,
         like
       })
       setPost({ ...post, likes: data.likes })
