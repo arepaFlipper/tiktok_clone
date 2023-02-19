@@ -24,7 +24,7 @@ interface IComment {
 const Comments = ({ isPostingComment, comment, setComment, addComment, comments }: IProps) => {
   const { userProfile } = useAuthStore();
   const handleChange = ({ value }: { value: string }) => {
-    setComment(value);
+    setComment(value.trim());
   }
   return (
     <div className="border-t-2 border-gray-200 pt-5 px-10 bg-(#F8F8F8] border-b-2 lg:pb-0 pb-[100px])">
