@@ -21,10 +21,12 @@ const Detail = ({ postDetails }: IProps) => {
   const router = useRouter();
   const { userProfile }: any = useAuthStore();
   const [isVideoMuted, setIsVideoMuted] = useState(false);
+  console.log(`💳%c[id].tsx:24 - postDetails`, 'font-weight:bold; background:#659a00;color:#fff;'); //DELETEME
+  console.log(postDetails); // DELETEME
   const [post, setPost] = useState(postDetails);
   const [playing, setPlaying]: [boolean, Function] = useState(false);
   const [comment, setComment] = useState("")
-  const [isPostingCommnet, setIsPostingComment] = useState<boolean>(false);
+  const [isPostingComment, setIsPostingComment] = useState<boolean>(false);
   const onVideoClick = () => {
     if (playing) {
       videoRef?.current?.pause();
@@ -53,7 +55,7 @@ const Detail = ({ postDetails }: IProps) => {
     }
   }
 
-  const addComment = async (e) => {
+  const addComment = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (userProfile && comment) {
       setIsPostingComment(true);
@@ -65,6 +67,8 @@ const Detail = ({ postDetails }: IProps) => {
         }
       );
 
+      console.log(`⁉️%c[id].tsx:68 - data`, 'font-weight:bold; background:#aa5500;color:#fff;'); //DELETEME
+      console.log(data); // DELETEME
       setPost({ ...post, comments: data.comments });
       setComment('');
       setIsPostingComment(false);
@@ -161,7 +165,7 @@ const Detail = ({ postDetails }: IProps) => {
             setComment={setComment}
             addComment={addComment}
             comments={post.comments}
-            isPostingCommnet={isPostingCommnet}
+            isPostingComment={isPostingComment}
           />
         </div>
       </div>
@@ -173,6 +177,8 @@ export default Detail
 
 export const getServerSideProps = async ({ params: { id } }: { params: { id: string } }) => {
   const { data } = await axios.get(`${BASE_URL}/api/post/${id}`);
+  console.log(`⬛%c[id].tsx:178 - data`, 'font-weight:bold; background:#d82700;color:#fff;'); //DELETEME
+  console.log(data); // DELETEME
   return {
     props: { postDetails: data }
   }
