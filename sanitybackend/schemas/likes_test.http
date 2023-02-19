@@ -11,12 +11,31 @@ Accept: application/json, text/plain, */*
 GET http://localhost:3000/api/post/
 
 
-PUT http://localhost:3000/api/post/dyuN6Nv4VyHeJygVcllpZk
+PUT http://localhost:3000/api/comment/dyuN6Nv4VyHeJygVcllpZk
 Content: application/json, text/plain, */*
 
 {
-    userId: "110496146480446932376",
-    comment: "my beautiful abacus app"
+    "userId": "110496146480446932376",
+    "comment": "my beautiful abacus app"
 }
 
-GET http://localhost:3000/api/post/
+PUT http://localhost:3000/api/post/dyuN6Nv4VyHeJygVcllpZk
+Accept: application/json, text/plain, */*
+Accept-Language: en-US,en;q=0.9
+Connection: keep-alive
+Content-Type: application/json
+Cookie: csrftoken=yClaNmQihIYdpnHH8HPcwFPduO8uC1yMPpoMbS2xj1LlN9MvgTMGnMJ6tOJmZjG8; _ga=GA1.1.1926778549.1675117676; g_state={"i_l":0}
+Origin: http://localhost:3000
+Referer: http://localhost:3000/detail/dyuN6Nv4VyHeJygVcllpZk
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36
+sec-ch-ua: "Not_A Brand";v="99", "Google Chrome";v="109", "Chromium";v="109"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Linux"
+
+{
+  "userId":"110496146480446932376",
+  "comment":"my beautiful abacus survey"
+}
