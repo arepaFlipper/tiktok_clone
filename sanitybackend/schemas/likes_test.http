@@ -3,6 +3,20 @@ Accept: application/json, text/plain, */*
 
 {
   userId: "110496146480446932376", 
-  oostId: "dyuN6Nv4VyHeJygVcllpZk", 
-  like: true
+  postId: "dyuN6Nv4VyHeJygVcllpZk", 
+  like: false
+
 }
+
+GET http://localhost:3000/api/post/
+
+
+PUT http://localhost:3000/api/post/dyuN6Nv4VyHeJygVcllpZk
+Content: application/json, text/plain, */*
+
+{
+    userId: "110496146480446932376",
+    comment: "my beautiful abacus app"
+}
+
+GET http://localhost:3000/api/post/
