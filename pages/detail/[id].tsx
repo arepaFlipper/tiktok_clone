@@ -117,7 +117,7 @@ const Detail = ({ postDetails }: IProps) => {
       <div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
         <div className="lg:mt-20 mt-10">
           <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
-            <div className="ml-4 md:w-20 md:h-20 w-16 h-16">
+            <div className="ml-4 md:w-20 md:h-20 w-8 h-8">
               <Link href="/">
                 <>
                   <Image
