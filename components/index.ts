@@ -1,10 +1,12 @@
-import Navbar from '../components/Navbar';
-import Sidebar from '../components/Sidebar';
-import LikeButton from '../components/LikeButton';
-import Comments from '../components/Comments';
-import SuggestedAccounts from '../components/SuggestedAccounts';
-import SidebarFooter from '../components/SidebarFooter';
-import Discover from '../components/Discover';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
+import LikeButton from './LikeButton';
+import Comments from './Comments';
+import SuggestedAccounts from './SuggestedAccounts';
+import SidebarFooter from './SidebarFooter';
+import Discover from './Discover';
+import VideoCard from './VideoCard';
+import NoResults from './NoResults';
 
 export {
   Sidebar,
@@ -14,5 +16,7 @@ export {
   Discover,
   Comments,
   LikeButton,
+  VideoCard,
+  NoResults,
 }
 

@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import axios from 'axios';
-import NoResults from '../components/NoResults';
-import VideoCard from '../components/VideoCard';
-import { Video } from '../types'
-import { BASE_URL } from "../utils";
+import { VideoCard, NoResults } from "@/components";
+import { Video } from '@/types'
+import { BASE_URL } from "@/utils";
 
-interface Iprops {
-  videos: Video[]
+interface IProps {
+  videos: Video[];
 }
 
 const Home: NextPage = ({ videos }) => {

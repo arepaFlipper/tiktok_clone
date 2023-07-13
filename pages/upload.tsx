@@ -138,7 +138,7 @@ const upload = () => {
           </select>
           <div className="flex gap-6 mt-10">
             <button
-              onClick={() => handlePost()}
+              onClick={handlePost}
               type="button"
               className="border-gray-300 border-2 text-md font-medium p-2 rounded w-28 lg:w-44 outline-none"
             >
