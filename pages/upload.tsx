@@ -36,8 +36,6 @@ const upload = () => {
     }
   }
   const handlePost = async () => {
-    console.log(`🫕%cupload.tsx:39 - caption`, 'font-weight:bold; background:#857a00;color:#fff;'); //DELETEME
-    console.log(caption); // DELETEME
     if (caption && videoAsset?._id && category) {
       setSavingPost(true);
       const document = {
@@ -58,8 +56,6 @@ const upload = () => {
         topic: category,
       }
       await axios.post("http://localhost:3000/api/post", document);
-      console.log(`🌈%cupload.tsx:59 - document`, 'font-weight:bold; background:#a15e00;color:#fff;'); //DELETEME
-      console.log(document); // DELETEME
       router.push('/');
     }
 
