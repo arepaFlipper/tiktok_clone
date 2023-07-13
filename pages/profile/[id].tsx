@@ -19,8 +19,6 @@ const Profile = ({ data }: IProps) => {
   const [showUserVideos, setShowUserVideos] = useState(true);
   const [videoList, setVideoList] = useState<Video[]>([]);
   const { user, userVideos, userLikedVideos } = data;
-  console.log(`⛩️%c[id].tsx:24 - data`, 'font-weight:bold; background:#659a00;color:#fff;'); //DELETEME
-  console.log(data); // DELETEME
   const videos = showUserVideos ? 'border-b-2 border-black' : 'text-gray-400';
   const liked = (!showUserVideos) ? 'border-b-2 border-black' : 'text-gray-400';
   useEffect(() => {
