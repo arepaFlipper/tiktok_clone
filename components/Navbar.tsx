@@ -29,8 +29,6 @@ const Navbar = () => {
       ) : (
         <GoogleLogin
           onSuccess={(response) => {
-            console.log(`🍞%cNavbar.tsx:31 - response`, 'font-weight:bold; background:#768900;color:#fff;'); //DELETEME
-            console.log(response); // DELETEME
             createOrGetUser(response.credential);
           }}
           onError={() => {
