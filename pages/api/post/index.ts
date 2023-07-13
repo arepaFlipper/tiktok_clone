@@ -1,9 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { allPostsQuery } from '../../../utils/queries';
+import { client } from '../../../utils/client';
 
-type Data = {
-  name: string
-}
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'GET') {
+    const query = allPostsQuery();
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  res.status(200).json({ name: 'Jhon Doe' })
+    const data = await client.fetch(query)
+    res.status(200).json(data);
+  }
 }
