@@ -15,8 +15,6 @@ interface IProps {
 }
 
 const Detail = ({ postDetails }: IProps) => {
-  console.log(`🫖%c[id].tsx:18 - postDetails`, 'font-weight:bold; background:#53ac00;color:#fff;'); //DELETEME
-  console.log(postDetails); // DELETEME
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
   const [isVideoMuted, setIsVideoMuted] = useState(false);
